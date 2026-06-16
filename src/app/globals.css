@@ -1,26 +1,358 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Modern Aesthetic — deep midnight canvas, vibrant glow, glassy depth */
+  --bg: #070710;
+  --bg-soft: #0e0e1a;
+  --panel: #12121f;
+  --card: #14141f;
+  --text: #f3f4fb;
+  --muted: #9aa0b8;
+  --line: rgba(255, 255, 255, 0.1);
+  --cta: #ffffff;
+  --cta-fg: #0b0b14;
+
+  /* Vibrant accent family — electric indigo, violet, cyan */
+  --violet: #a855f7;
+  --blue: #5b7cfa;
+  --sky: #22d3ee;
+  --amber: #f0a13a;
+
+  /* neutral helpers reused by the hero */
+  --ink: #f3f4fb;
+  --paper: #070710;
+  --paper-2: #0e0e1a;
+  --stone: #9aa0b8;
+  --clay: #818cf8;
+  --hair: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-panel: var(--panel);
+  --color-card: var(--card);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-cta: var(--cta);
+  --color-cta-fg: var(--cta-fg);
+  --color-violet: var(--violet);
+  --color-blue: var(--blue);
+  --color-sky: var(--sky);
+  --color-amber: var(--amber);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper2: var(--paper-2);
+  --color-stone: var(--stone);
+  --color-clay: var(--clay);
+  --color-hair: var(--hair);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Offset in-page anchor jumps so the fixed navbar never covers headings */
+section[id],
+[id] {
+  scroll-margin-top: 96px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01";
+  overflow-x: hidden;
+}
+
+/* Typographic polish — balanced headings, tidy paragraph ragging */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--violet) 22%, transparent);
+  color: var(--text);
+}
+
+/* Accessible, intentional focus ring — a sign of a considered product */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--violet) 70%, transparent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a3d;
+  border: 2px solid var(--bg);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Refined serif for architectural, editorial headlines */
+.font-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+/* Fine architectural grid — drafting-paper hairlines that fade out */
+.arch-grid {
+  background-image: linear-gradient(var(--hair) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+  background-size: 88px 88px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 0%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 0%, transparent 78%);
+}
+
+/* A stone plinth the product sits on */
+.plinth {
+  background: linear-gradient(180deg, #efe9dd 0%, #e6ddcd 100%);
+  border: 1px solid var(--hair);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 30px 60px -40px rgba(28, 26, 22, 0.4);
+}
+
+/* Editorial small-caps label */
+.label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.brand-gradient {
+  background: linear-gradient(120deg, #6366f1 0%, #06b6d4 55%, #2dd4bf 100%);
+}
+.brand-text {
+  background: linear-gradient(120deg, #0891b2 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.text-gradient {
+  background: linear-gradient(105deg, #0e1525 0%, #0891b2 45%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+
+/* Deep elevation with a soft cool glow — modern, dimensional */
+.card-shadow {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 10px 30px -12px rgba(0, 0, 0, 0.7),
+    0 30px 70px -36px rgba(91, 124, 250, 0.28);
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-shadow:hover {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 16px 40px -14px rgba(0, 0, 0, 0.7),
+    0 44px 90px -40px rgba(168, 85, 247, 0.36);
+}
+
+/* Vibrant gradient text for headline accents */
+.text-glow {
+  background: linear-gradient(100deg, #67e8f9 0%, #818cf8 46%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient CTA with a luminous halo */
+.btn-grad {
+  background: linear-gradient(100deg, #5b7cfa 0%, #a855f7 100%);
+  box-shadow: 0 14px 40px -12px rgba(124, 95, 247, 0.6);
+}
+.btn-grad:hover {
+  box-shadow: 0 20px 54px -12px rgba(124, 95, 247, 0.75);
+}
+
+/* Modern aurora — layered vibrant blooms */
+.aurora-modern {
+  background: radial-gradient(
+      46% 56% at 28% 24%,
+      rgba(91, 124, 250, 0.3),
+      transparent 70%
+    ),
+    radial-gradient(40% 50% at 78% 18%, rgba(168, 85, 247, 0.26), transparent 70%),
+    radial-gradient(44% 52% at 64% 76%, rgba(34, 211, 238, 0.2), transparent 72%);
+}
+
+/* Radial glow ring behind the 3D stage */
+.glow-ring {
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 110, 250, 0.4) 0%,
+    rgba(91, 124, 250, 0.18) 38%,
+    transparent 68%
+  );
+}
+
+.grid-fade {
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 35%,
+    #000 0%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 0%, transparent 75%);
+}
+
+.aurora {
+  background: radial-gradient(
+      42% 52% at 50% 0%,
+      rgba(6, 182, 212, 0.15),
+      transparent 70%
+    ),
+    radial-gradient(40% 50% at 82% 18%, rgba(45, 212, 191, 0.15), transparent 70%),
+    radial-gradient(38% 48% at 14% 28%, rgba(99, 102, 241, 0.1), transparent 70%);
+  filter: blur(10px);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.float-slow.delay-1 {
+  animation-delay: -1.5s;
+}
+.float-slow.delay-2 {
+  animation-delay: -3s;
+}
+.float-slow.delay-3 {
+  animation-delay: -4.5s;
+}
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.12);
+  }
+}
+.orb {
+  animation: orb-drift 16s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+.scroll-dot {
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .float-slow,
+  .orb,
+  .scroll-dot,
+  .spin-slow {
+    animation: none !important;
+  }
 }
