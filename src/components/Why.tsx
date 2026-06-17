@@ -33,7 +33,7 @@ export default function Why() {
         <div>
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-amber">
-              Why Aarohana Infratech
+              Why Aarotech
             </p>
           </Reveal>
           <AnimatedHeading
@@ -41,7 +41,7 @@ export default function Why() {
             className="font-display mt-3 text-4xl font-bold sm:text-5xl"
           />
           <p className="mt-5 max-w-md text-muted">
-            Great technology is the kind you stop noticing. Aarohana Infratech
+            Great technology is the kind you stop noticing. Aarotech
             blends premium materials, fast local intelligence and a calm
             interface so the home just works — for years.
           </p>

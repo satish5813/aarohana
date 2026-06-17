@@ -13,12 +13,33 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight the nav item for whichever section is currently in view.
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.querySelector(l.href)).filter(
+      (el): el is Element => el != null
+    );
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -33,20 +54,31 @@ export default function Navbar() {
         <a href="#" className="group flex items-center gap-2.5">
           <LogoMark className="h-9 w-9 rounded-xl transition-transform duration-300 group-hover:scale-105" />
           <span className="font-display text-lg font-bold tracking-tight">
-            Aarohana <span className="text-muted">Infratech</span>
+            Aaro<span className="text-muted">tech</span>
           </span>
         </a>
 
         <div className="hidden items-center gap-9 md:flex">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted transition-colors hover:text-text"
-            >
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) => {
+            const isActive = active === l.href;
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                aria-current={isActive ? "true" : undefined}
+                className={`group relative text-sm font-medium transition-colors duration-300 ${
+                  isActive ? "text-text" : "text-muted hover:text-text"
+                }`}
+              >
+                {l.label}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-0.5 rounded-full bg-gradient-to-r from-blue to-violet transition-all duration-300 ease-out ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            );
+          })}
         </div>
 
         <div className="hidden md:block">
@@ -86,7 +118,12 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-muted hover:text-text"
+              aria-current={active === l.href ? "true" : undefined}
+              className={`block py-3 transition-colors ${
+                active === l.href
+                  ? "font-medium text-text"
+                  : "text-muted hover:text-text"
+              }`}
             >
               {l.label}
             </a>

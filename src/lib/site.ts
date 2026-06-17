@@ -7,16 +7,16 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "http://localhost:3000";
 
 export const BUSINESS = {
-  name: "Aarohana Infratech",
-  legalName: "Aarohana Infratech",
+  name: "Aarotech",
+  legalName: "Aarotech",
   tagline: "The Future of Smart Living",
   description:
-    "Aarohana Infratech designs intelligent touch panels and a connected home ecosystem. Control lights, fans, curtains and climate with a single, beautiful interface.",
-  phone: "+91 97008 12526",
-  phoneHref: "+919700812526",
+    "Aarotech designs intelligent touch panels and a connected home ecosystem. Control lights, fans, curtains and climate with a single, beautiful interface.",
+  phone: "+91 83090 47843",
+  phoneHref: "+918309047843",
   contactPerson: "Pradeep CMR",
-  city: "Vijayawada",
-  region: "Andhra Pradesh",
+  city: "Hyderabad",
+  region: "Telangana",
   country: "IN",
   // A representative image used for social-share previews.
   ogImage:

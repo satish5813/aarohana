@@ -13,9 +13,9 @@ type Scene = {
   wall: string; // room wall colour
   ambient: string; // soft room light wash
   dim: number; // 0 bright -> 0.7 night darkness
-  blinds: number; // 0 closed -> 100 fully open
+  curtain: number; // 0 closed -> 100 fully open
   lamp: number; // 0 off -> 1 full glow
-  stats: { lights: string; blinds: string; climate: string; security: string };
+  stats: { lights: string; curtain: string; climate: string; security: string };
   actions: string[];
 };
 
@@ -28,11 +28,11 @@ const SCENES: Scene[] = [
     wall: "#f1ece2",
     ambient: "rgba(255,221,150,0.18)",
     dim: 0,
-    blinds: 100,
+    curtain: 100,
     lamp: 0,
-    stats: { lights: "60%", blinds: "Open", climate: "23°C", security: "Disarmed" },
+    stats: { lights: "60%", curtain: "Open", climate: "23°C", security: "Disarmed" },
     actions: [
-      "Blinds open to 100%",
+      "Curtains drawn fully open",
       "Bedroom lights fade up to 60%",
       "Geyser & coffee maker on",
       "Climate set to 23°C",
@@ -46,11 +46,11 @@ const SCENES: Scene[] = [
     wall: "#1a1726",
     ambient: "rgba(106,75,255,0.4)",
     dim: 0.5,
-    blinds: 0,
+    curtain: 0,
     lamp: 0.3,
-    stats: { lights: "15%", blinds: "Closed", climate: "22°C", security: "Disarmed" },
+    stats: { lights: "15%", curtain: "Closed", climate: "22°C", security: "Disarmed" },
     actions: [
-      "Blinds fully closed",
+      "Curtains drawn closed",
       "Ceiling lights off, cove lights 15%",
       "TV & sound bar powered on",
       "Do-not-disturb enabled",
@@ -64,9 +64,9 @@ const SCENES: Scene[] = [
     wall: "#0e1322",
     ambient: "rgba(79,139,255,0.22)",
     dim: 0.66,
-    blinds: 0,
+    curtain: 0,
     lamp: 0.12,
-    stats: { lights: "Off", blinds: "Closed", climate: "Sleep", security: "Armed" },
+    stats: { lights: "Off", curtain: "Closed", climate: "Sleep", security: "Armed" },
     actions: [
       "All lights off except pathway",
       "Doors locked, alarm armed",
@@ -82,9 +82,9 @@ const SCENES: Scene[] = [
     wall: "#e7e9ec",
     ambient: "rgba(0,0,0,0)",
     dim: 0.12,
-    blinds: 50,
+    curtain: 50,
     lamp: 0,
-    stats: { lights: "Off", blinds: "Half", climate: "Eco", security: "Armed" },
+    stats: { lights: "Off", curtain: "Half", climate: "Eco", security: "Armed" },
     actions: [
       "Everything powered down",
       "Security cameras armed",
@@ -134,7 +134,7 @@ export default function Scenes() {
       <Reveal delay={0.1}>
         <p className="mt-4 max-w-2xl text-muted">
           A scene is one tap that moves your whole home together — lights,
-          blinds, climate and security. Pick a scene below and watch the living
+          curtains, climate and security. Pick a scene below and watch the living
           room respond in real time.
         </p>
       </Reveal>
@@ -153,7 +153,7 @@ export default function Scenes() {
             <div className="absolute inset-x-0 bottom-0 h-[28%] bg-black/15" />
             <div className="absolute inset-x-0 bottom-[28%] h-px bg-white/15" />
 
-            {/* window with a blind that physically lowers */}
+            {/* window with curtains that draw open and closed */}
             <div className="absolute left-12 top-14 h-48 w-60 overflow-hidden rounded-xl border-[3px] border-black/25 shadow-inner">
               <motion.div
                 className="absolute inset-0"
@@ -163,18 +163,31 @@ export default function Scenes() {
               {/* window cross frame */}
               <div className="absolute left-1/2 top-0 h-full w-[3px] -translate-x-1/2 bg-black/20" />
               <div className="absolute left-0 top-1/2 h-[3px] w-full -translate-y-1/2 bg-black/20" />
-              {/* the blind */}
+
+              {/* left curtain panel — gathers to the side when open */}
               <motion.div
-                className="absolute inset-x-0 top-0"
+                className="absolute inset-y-0 left-0"
                 style={{
                   backgroundImage:
-                    "repeating-linear-gradient(180deg,#efe9dd 0px,#efe9dd 7px,#d8d1c2 7px,#d8d1c2 9px)",
+                    "repeating-linear-gradient(90deg,#7c89ad 0px,#aab4d2 6px,#c6cee5 9px,#9aa6c6 13px,#7c89ad 18px)",
+                  boxShadow: "inset -10px 0 16px -8px rgba(0,0,0,0.4)",
                 }}
-                animate={{ height: `${100 - s.blinds}%` }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="absolute inset-x-0 bottom-0 h-1.5 bg-[#c4bba6]" />
-              </motion.div>
+                animate={{ width: `${8 + ((100 - s.curtain) / 100) * 42}%` }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              />
+              {/* right curtain panel */}
+              <motion.div
+                className="absolute inset-y-0 right-0"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg,#9aa6c6 0px,#c6cee5 6px,#aab4d2 9px,#7c89ad 13px,#9aa6c6 18px)",
+                  boxShadow: "inset 10px 0 16px -8px rgba(0,0,0,0.4)",
+                }}
+                animate={{ width: `${8 + ((100 - s.curtain) / 100) * 42}%` }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              />
+              {/* curtain rod across the top */}
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-b from-[#5b6680] to-[#3c4358]" />
             </div>
 
             {/* floor lamp with a real glowing bulb */}
@@ -229,7 +242,7 @@ export default function Scenes() {
           {/* live home state */}
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <StatChip label="Lights" value={s.stats.lights} />
-            <StatChip label="Blinds" value={s.stats.blinds} />
+            <StatChip label="Curtains" value={s.stats.curtain} />
             <StatChip label="Climate" value={s.stats.climate} />
             <StatChip label="Security" value={s.stats.security} />
           </div>

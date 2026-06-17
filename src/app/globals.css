@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* Modern Aesthetic — deep midnight canvas, vibrant glow, glassy depth */
-  --bg: #070710;
-  --bg-soft: #0e0e1a;
-  --panel: #12121f;
-  --card: #14141f;
-  --text: #f3f4fb;
-  --muted: #9aa0b8;
-  --line: rgba(255, 255, 255, 0.1);
-  --cta: #ffffff;
-  --cta-fg: #0b0b14;
+  /* Modern Aesthetic — bright airy canvas, vibrant accents, glassy depth */
+  --bg: #f6f8fe;
+  --bg-soft: #eef2fb;
+  --panel: #ffffff;
+  --card: #ffffff;
+  --text: #0f152b;
+  --muted: #586079;
+  --line: rgba(15, 23, 42, 0.09);
+  --cta: #4f46e5;
+  --cta-fg: #ffffff;
 
   /* Vibrant accent family — electric indigo, violet, cyan */
-  --violet: #a855f7;
-  --blue: #5b7cfa;
-  --sky: #22d3ee;
-  --amber: #f0a13a;
+  --violet: #7c3aed;
+  --blue: #4f6ef7;
+  --sky: #0891b2;
+  --amber: #d97916;
 
   /* neutral helpers reused by the hero */
-  --ink: #f3f4fb;
-  --paper: #070710;
-  --paper-2: #0e0e1a;
-  --stone: #9aa0b8;
-  --clay: #818cf8;
-  --hair: rgba(255, 255, 255, 0.12);
+  --ink: #0f152b;
+  --paper: #f6f8fe;
+  --paper-2: #eef2fb;
+  --stone: #586079;
+  --clay: #6366f1;
+  --hair: rgba(15, 23, 42, 0.07);
 }
 
 @theme inline {
@@ -119,7 +119,7 @@ html.lenis body {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a3d;
+  background: #c4cbdc;
   border: 2px solid var(--bg);
   border-radius: 99px;
 }
@@ -191,28 +191,34 @@ html.lenis body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 18px 48px -28px rgba(30, 41, 99, 0.28);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
 }
 
-/* Deep elevation with a soft cool glow — modern, dimensional */
+/* Soft, dimensional elevation tuned for a light canvas */
 .card-shadow {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 10px 30px -12px rgba(0, 0, 0, 0.7),
-    0 30px 70px -36px rgba(91, 124, 250, 0.28);
-  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 2px 6px -2px rgba(15, 23, 42, 0.08),
+    0 18px 40px -20px rgba(30, 41, 99, 0.18),
+    0 36px 80px -44px rgba(79, 110, 247, 0.3);
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card-shadow:hover {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 16px 40px -14px rgba(0, 0, 0, 0.7),
-    0 44px 90px -40px rgba(168, 85, 247, 0.36);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 4px 10px -2px rgba(15, 23, 42, 0.1),
+    0 26px 56px -22px rgba(30, 41, 99, 0.22),
+    0 56px 110px -48px rgba(124, 58, 237, 0.4);
+  transform: translateY(-3px);
 }
 
-/* Vibrant gradient text for headline accents */
+/* Vibrant gradient text for headline accents — rich enough to read on white */
 .text-glow {
-  background: linear-gradient(100deg, #67e8f9 0%, #818cf8 46%, #c084fc 100%);
+  background: linear-gradient(100deg, #2563eb 0%, #7c3aed 50%, #0891b2 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -220,11 +226,13 @@ html.lenis body {
 
 /* Gradient CTA with a luminous halo */
 .btn-grad {
-  background: linear-gradient(100deg, #5b7cfa 0%, #a855f7 100%);
-  box-shadow: 0 14px 40px -12px rgba(124, 95, 247, 0.6);
+  background: linear-gradient(100deg, #4f6ef7 0%, #7c3aed 100%);
+  box-shadow: 0 14px 36px -12px rgba(99, 70, 235, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.35) inset;
 }
 .btn-grad:hover {
-  box-shadow: 0 20px 54px -12px rgba(124, 95, 247, 0.75);
+  box-shadow: 0 20px 50px -12px rgba(99, 70, 235, 0.62),
+    0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
 /* Modern aurora — layered vibrant blooms */

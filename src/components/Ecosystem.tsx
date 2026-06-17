@@ -34,7 +34,7 @@ export default function Ecosystem() {
           />
           <Reveal delay={0.1}>
             <p className="mt-4 text-muted">
-              Aarohana Infratech devices form a self-healing mesh that keeps
+              Aarotech devices form a self-healing mesh that keeps
               working even when the internet doesn&apos;t. Set a scene once and
               your whole home responds.
             </p>

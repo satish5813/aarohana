@@ -66,7 +66,7 @@ export default function Contact() {
               Get started
             </p>
             <h2 className="font-display mt-3 text-4xl font-bold sm:text-5xl">
-              Bring Aarohana Infratech home
+              Bring Aarotech home
             </h2>
             <p className="mt-5 max-w-sm text-muted">
               Tell us about your space and a specialist will design a
@@ -88,7 +88,7 @@ export default function Contact() {
 
               {/* Phone (clickable) */}
               <a
-                href="tel:+919700812526"
+                href="tel:+918309047843"
                 className="group flex items-center gap-3"
               >
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-bg-soft text-blue transition-colors group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-violet group-hover:to-blue group-hover:text-white">
@@ -99,7 +99,7 @@ export default function Contact() {
                 <span>
                   <span className="block text-xs text-muted">Call us</span>
                   <span className="font-medium text-text transition-colors group-hover:text-blue">
-                    +91 97008 12526
+                    +91 83090 47843
                   </span>
                 </span>
               </a>
@@ -114,7 +114,7 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-xs text-muted">Visit us</span>
-                  <span className="font-medium text-text">Vijayawada, Andhra Pradesh</span>
+                  <span className="font-medium text-text">Hyderabad, Telangana</span>
                 </span>
               </div>
             </div>
@@ -200,8 +200,8 @@ export default function Contact() {
               {error && (
                 <p className="text-sm text-red-500">
                   {error} You can also call us at{" "}
-                  <a href="tel:+919700812526" className="font-medium underline">
-                    +91 97008 12526
+                  <a href="tel:+918309047843" className="font-medium underline">
+                    +91 83090 47843
                   </a>
                   .
                 </p>

@@ -9,7 +9,7 @@ const COLS = [
 const SOCIALS = [
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/pradeep-ravulapati-investments",
     path: "M4.98 3.5a2 2 0 1 1 0 4.001 2 2 0 0 1 0-4ZM3 8.75h3.96V21H3V8.75ZM9.5 8.75h3.8v1.67h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-3.96v-5.43c0-1.3-.02-2.97-1.9-2.97-1.9 0-2.19 1.4-2.19 2.87V21H9.5V8.75Z",
   },
   {
@@ -38,7 +38,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5">
               <LogoMark className="h-8 w-8 rounded-lg" />
               <span className="font-display text-lg font-bold">
-                Aarohana Infratech
+                Aarotech
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted">
@@ -51,6 +51,9 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
+                  {...(s.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="group grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-cta hover:text-cta-fg"
                 >
                   <svg
@@ -87,7 +90,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 text-xs text-muted sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} Aarohana Infratech. All rights
+            © {new Date().getFullYear()} Aarotech. All rights
             reserved.
           </p>
           <div className="flex gap-6">
