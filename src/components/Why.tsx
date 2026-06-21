@@ -5,24 +5,24 @@ import AnimatedHeading from "./AnimatedHeading";
 
 const POINTS = [
   {
-    k: "7-year",
-    t: "Warranty, standard",
-    d: "Built to outlast the renovation. Every panel is covered for seven years.",
+    k: "No rewiring",
+    t: "Retrofit in minutes",
+    d: "Works with your existing wiring — no breaking walls, no mess, no electrician marathons.",
   },
   {
-    k: "AES-256",
-    t: "Privacy by design",
-    d: "Local-first control with end-to-end encryption. Your home stays yours.",
+    k: "Up to 25%",
+    t: "Energy efficient",
+    d: "Smart scheduling and automation trim wasteful usage, cutting your energy bills by as much as 25%.",
   },
   {
-    k: "<40ms",
-    t: "Instant response",
-    d: "Touch to action in the blink of an eye, online or off.",
+    k: "Optimal",
+    t: "Solutions, tailored",
+    d: "Right-sized automation for every room — the perfect balance of comfort, control and cost.",
   },
   {
-    k: "100%",
-    t: "Made in India",
-    d: "Designed, engineered and assembled with global-grade components.",
+    k: "24/7",
+    t: "Security & safety",
+    d: "End-to-end encrypted, local-first control with always-on monitoring so your home stays safe.",
   },
 ];
 

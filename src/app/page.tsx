@@ -6,6 +6,7 @@ import Products from "@/components/Products";
 import Lifestyle from "@/components/Lifestyle";
 import FeatureReel from "@/components/FeatureReel";
 import Ecosystem from "@/components/Ecosystem";
+import SmartLock from "@/components/SmartLock";
 import Scenes from "@/components/Scenes";
 import AppShowcase from "@/components/AppShowcase";
 import Stats from "@/components/Stats";
@@ -26,6 +27,7 @@ export default function Home() {
       <Lifestyle />
       <FeatureReel />
       <Ecosystem />
+      <SmartLock />
       <Scenes />
       <AppShowcase />
       <Stats />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import HeroCanvas from "./three/HeroCanvas";
+import Image from "next/image";
 import {
   LightsIcon,
   ClimateIcon,
@@ -81,19 +81,18 @@ export default function Hero() {
             {...fade(0.08)}
             className="font-display mt-6 text-[2.9rem] font-bold leading-[1.03] tracking-[-0.03em] text-text sm:text-6xl lg:text-[5rem]"
           >
-            Your home,
+            Welcome,
             <br />
-            beautifully{" "}
-            <span className="text-glow">intelligent.</span>
+            smarter <span className="text-glow">than ever.</span>
           </motion.h1>
 
           <motion.p
             {...fade(0.16)}
             className="mt-7 max-w-md text-base leading-relaxed text-muted sm:text-lg"
           >
-            One elegant touch panel to orchestrate light, air, comfort and
-            security — a connected home that anticipates you and simply feels
-            effortless.
+            At Aarotech, we transform ordinary spaces into intelligent living
+            environments with smarter automation solutions tailored to your
+            needs — without rewiring and without complexity.
           </motion.p>
 
           <motion.div
@@ -130,6 +129,17 @@ export default function Hero() {
               See it in action
             </a>
           </motion.div>
+
+          <motion.p
+            {...fade(0.27)}
+            className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted"
+          >
+            <span className="font-semibold text-glow">
+              Start your automation from just ₹48,000
+            </span>
+            <span className="hidden h-3 w-px bg-line sm:inline-block" />
+            <span>no rewiring, no hassle</span>
+          </motion.p>
 
           <motion.div
             {...fade(0.3)}
@@ -207,52 +217,56 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* 3D stage with glow + floating glass control cards */}
-        <div className="relative h-[56vh] min-h-[440px] lg:h-[68vh] lg:min-h-[520px]">
-          {/* luminous halo behind the panel */}
-          <div className="glow-ring pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[20px]" />
-          {/* glass pedestal */}
-          <div className="glass card-shadow pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[82%] w-[84%] -translate-x-1/2 -translate-y-1/2 rounded-[2.6rem]" />
+        {/* premium product showcase */}
+        <div className="relative h-[58vh] min-h-[440px] lg:h-[64vh] lg:min-h-[520px]">
+          {/* luminous halo behind the frame */}
+          <div className="glow-ring pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[84%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[34px]" />
 
-          <HeroCanvas />
+          {/* gradient-bordered dark frame holding the hero image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 18 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="group card-shadow relative h-full w-full overflow-hidden rounded-[2rem] p-[1.5px] [background:linear-gradient(135deg,rgba(34,211,238,0.7),rgba(99,102,241,0.6),rgba(168,85,247,0.5))]"
+          >
+            <div className="relative h-full w-full overflow-hidden rounded-[1.9rem] bg-white">
+              {/* soft brand wash so the white product shot has depth */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_0%,rgba(34,211,238,0.12),transparent_60%)]" />
+              <Image
+                src="/HeroWhite.png"
+                alt="Aarotech smart-home product family — touch panels, hub, smart lock, sensors and the companion app"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain object-center p-5 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04] sm:p-8"
+              />
+              {/* subtle bottom fade to ground the products */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/[0.05] to-transparent" />
+            </div>
+          </motion.div>
 
-          {/* glossy reflection under the panel */}
+          {/* glossy reflection under the frame */}
           <div
-            className="pointer-events-none absolute bottom-[6%] left-1/2 -z-10 h-12 w-2/3 -translate-x-1/2 rounded-[50%] blur-xl"
-            style={{ background: "rgba(124,95,247,0.35)" }}
+            className="pointer-events-none absolute -bottom-5 left-1/2 -z-10 h-16 w-3/4 -translate-x-1/2 rounded-[50%] blur-2xl"
+            style={{ background: "rgba(124,95,247,0.32)" }}
           />
 
-          <FloatCard className="left-0 top-[14%]" delay="">
+          {/* floating glass accent cards */}
+          <FloatCard className="-left-3 top-[12%] sm:-left-5" delay="">
             <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-amber/15 text-amber">
-                <LightsIcon className="h-4.5 w-4.5" />
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-sky/20 text-sky">
+                <EnergyIcon className="h-4.5 w-4.5" />
               </span>
               <div>
-                <div className="text-xs font-semibold text-text">
-                  Living · Lights
-                </div>
-                <div className="mt-1.5 h-1.5 w-24 rounded-full bg-line">
-                  <div className="h-1.5 w-[72%] rounded-full bg-gradient-to-r from-amber to-[#f4b860]" />
-                </div>
-              </div>
-            </div>
-          </FloatCard>
-
-          <FloatCard className="right-0 top-[30%]" delay="delay-2">
-            <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue/20 text-sky">
-                <ClimateIcon className="h-4.5 w-4.5" />
-              </span>
-              <div>
-                <div className="text-[11px] text-muted">Climate</div>
+                <div className="text-[11px] text-muted">Energy saved</div>
                 <div className="font-display text-lg font-bold leading-none text-text">
-                  24°C
+                  up to 25%
                 </div>
               </div>
             </div>
           </FloatCard>
 
-          <FloatCard className="bottom-[20%] left-[4%]" delay="delay-1">
+          <FloatCard className="-right-3 bottom-[12%] sm:-right-5" delay="delay-2">
             <div className="flex items-center gap-3">
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-violet/20 text-violet">
                 <SecurityIcon className="h-4.5 w-4.5" />
@@ -261,21 +275,7 @@ export default function Hero() {
                 <div className="text-[11px] text-muted">Front door</div>
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-text">
                   <span className="h-1.5 w-1.5 rounded-full bg-sky" />
-                  Locked
-                </div>
-              </div>
-            </div>
-          </FloatCard>
-
-          <FloatCard className="bottom-[10%] right-[2%]" delay="delay-3">
-            <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-sky/20 text-sky">
-                <EnergyIcon className="h-4.5 w-4.5" />
-              </span>
-              <div>
-                <div className="text-[11px] text-muted">Today&apos;s energy</div>
-                <div className="font-display text-base font-bold leading-none text-text">
-                  3.2 <span className="text-xs font-medium text-muted">kWh</span>
+                  Secured
                 </div>
               </div>
             </div>

@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import LogoMark from "./Logo";
+import { selectProduct } from "./productStore";
 
 const LINKS = [
   { label: "Products", href: "#products" },
   { label: "Ecosystem", href: "#ecosystem" },
+  { label: "Smart Lock", href: "#smart-lock" },
   { label: "Why us", href: "#why" },
   { label: "Contact", href: "#contact" },
 ];
@@ -14,6 +16,17 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
+
+  // Clicking the brand always returns to the top of the home page and resets
+  // any in-page state (e.g. the selected product), so it behaves like "Home".
+  const goHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.button !== 0) return;
+    e.preventDefault();
+    setOpen(false);
+    selectProduct("posh");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.pushState(null, "", "/");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -51,7 +64,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="group flex items-center gap-2.5">
+        <a
+          href="/"
+          onClick={goHome}
+          aria-label="Aarotech — back to home"
+          className="group flex items-center gap-2.5"
+        >
           <LogoMark className="h-9 w-9 rounded-xl transition-transform duration-300 group-hover:scale-105" />
           <span className="font-display text-lg font-bold tracking-tight">
             Aaro<span className="text-muted">tech</span>
