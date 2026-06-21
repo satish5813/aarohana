@@ -111,8 +111,8 @@ export default function Hero() {
             className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted sm:mt-7 sm:text-lg lg:mx-0"
           >
             At Aarotech, we transform ordinary spaces into intelligent living
-            environments — smarter automation tailored to you, without rewiring
-            and without complexity.
+            environments with smart automation solutions tailored to your needs
+            — without rewiring and without complexity.
           </motion.p>
 
           <motion.div
@@ -154,11 +154,11 @@ export default function Hero() {
             {...fade(0.27)}
             className="mt-6 flex flex-col items-center gap-x-2 gap-y-1 text-sm text-muted sm:flex-row sm:flex-wrap lg:justify-start"
           >
-            <span className="font-semibold text-glow">
-              Install your automation @ ₹35,000
-            </span>
+            <span>Transform your home with Aarotech smart solutions</span>
             <span className="hidden h-3 w-px bg-line sm:inline-block" />
-            <span>no rewiring, no hassle</span>
+            <span className="font-semibold text-glow">
+              Starting at ₹39,999
+            </span>
           </motion.p>
 
           <motion.div
