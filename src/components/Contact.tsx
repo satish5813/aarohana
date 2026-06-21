@@ -63,7 +63,7 @@ export default function Contact() {
           <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-violet/20 blur-3xl" />
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-violet">
-              Get started
+              Your contact · Pradeep
             </p>
             <h2 className="font-display mt-3 text-4xl font-bold sm:text-5xl">
               Bring Aarotech home
@@ -82,7 +82,7 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-xs text-muted">Your contact</span>
-                  <span className="font-medium text-text">Pradeep CMR</span>
+                  <span className="font-medium text-text">Pradeep</span>
                 </span>
               </div>
 

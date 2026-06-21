@@ -42,8 +42,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted">
-              Intelligent touch panels and a connected home ecosystem,
-              engineered for life.
+              Transforming spaces and enhancing lives — intelligent automation
+              for the modern home.
             </p>
             <div className="mt-6 flex gap-3">
               {SOCIALS.map((s) => (

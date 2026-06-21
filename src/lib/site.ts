@@ -9,12 +9,12 @@ export const SITE_URL =
 export const BUSINESS = {
   name: "Aarotech",
   legalName: "Aarotech",
-  tagline: "The Future of Smart Living",
+  tagline: "Transforming spaces and enhancing lives",
   description:
     "Aarotech designs intelligent touch panels and a connected home ecosystem. Control lights, fans, curtains and climate with a single, beautiful interface.",
   phone: "+91 83090 47843",
   phoneHref: "+918309047843",
-  contactPerson: "Pradeep CMR",
+  contactPerson: "Pradeep",
   city: "Hyderabad",
   region: "Telangana",
   country: "IN",

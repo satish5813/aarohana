@@ -70,9 +70,17 @@ export default function Navbar() {
           aria-label="Aarotech — back to home"
           className="group flex items-center gap-2.5"
         >
-          <LogoMark className="h-9 w-9 rounded-xl transition-transform duration-300 group-hover:scale-105" />
-          <span className="font-display text-lg font-bold tracking-tight">
-            Aaro<span className="text-muted">tech</span>
+          <LogoMark className="h-10 w-10 transition-transform duration-300 group-hover:scale-105" />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-xl font-bold tracking-[-0.02em] text-text">
+              Aaro
+              <span className="text-glow transition-all duration-500 group-hover:[filter:brightness(1.15)]">
+                tech
+              </span>
+            </span>
+            <span className="text-shimmer mt-1 hidden whitespace-nowrap text-[10px] font-semibold tracking-tight min-[380px]:block">
+              Transforming spaces &amp; enhancing lives
+            </span>
           </span>
         </a>
 

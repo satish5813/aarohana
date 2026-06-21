@@ -369,6 +369,32 @@ html.lenis body {
   animation: sweep 5s ease-in-out infinite;
 }
 
+/* Animated gradient text — flowing brand colours for taglines/accents */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    #2563eb 0%,
+    #7c3aed 30%,
+    #06b6d4 55%,
+    #7c3aed 80%,
+    #2563eb 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
 /* Breathing glow for the product halo */
 @keyframes glow-pulse {
   0%,
@@ -392,7 +418,8 @@ html.lenis body {
   .scroll-dot,
   .spin-slow,
   .animate-sweep,
-  .glow-pulse {
+  .glow-pulse,
+  .text-shimmer {
     animation: none !important;
   }
 }

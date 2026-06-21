@@ -13,10 +13,10 @@ export default function LogoMark({
   return (
     <span className={`relative inline-block shrink-0 overflow-hidden ${className}`}>
       <Image
-        src="/logo-mark.png"
+        src="/aaro-logo.png"
         alt="Aarotech"
         fill
-        sizes="40px"
+        sizes="44px"
         className="object-contain"
       />
     </span>

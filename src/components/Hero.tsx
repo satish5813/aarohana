@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import {
@@ -52,6 +53,20 @@ function FloatCard({
 }
 
 export default function Hero() {
+  // Live "Controls" rail — auto-cycles through appliances, pauses on hover,
+  // and reacts to clicks so it feels like a running smart home.
+  const [activeCtrl, setActiveCtrl] = useState(0);
+  const [ctrlPaused, setCtrlPaused] = useState(false);
+
+  useEffect(() => {
+    if (ctrlPaused) return;
+    const t = setInterval(
+      () => setActiveCtrl((i) => (i + 1) % APPLIANCES.length),
+      2000
+    );
+    return () => clearInterval(t);
+  }, [ctrlPaused]);
+
   return (
     <section className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden bg-paper pb-16 pt-24 sm:pb-20 sm:pt-28">
       {/* layered vibrant backdrop */}
@@ -86,7 +101,7 @@ export default function Hero() {
             {...fade(0.08)}
             className="font-display mt-5 text-[2.6rem] font-bold leading-[1.02] tracking-[-0.03em] text-text sm:mt-6 sm:text-6xl lg:text-[5.1rem]"
           >
-            Welcome,
+            Welcome Home,
             <br />
             <span className="text-glow">smarter than ever.</span>
           </motion.h1>
@@ -140,7 +155,7 @@ export default function Hero() {
             className="mt-6 flex flex-col items-center gap-x-2 gap-y-1 text-sm text-muted sm:flex-row sm:flex-wrap lg:justify-start"
           >
             <span className="font-semibold text-glow">
-              Start your automation from just ₹48,000
+              Install your automation @ ₹35,000
             </span>
             <span className="hidden h-3 w-px bg-line sm:inline-block" />
             <span>no rewiring, no hassle</span>
@@ -153,17 +168,47 @@ export default function Hero() {
             <span className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
               Controls
             </span>
-            <div className="flex items-center gap-2">
-              {APPLIANCES.map(({ label, Icon }) => (
-                <span
-                  key={label}
-                  title={label}
-                  className="group glass grid h-9 w-9 place-items-center rounded-xl text-muted transition-all duration-300 hover:-translate-y-0.5 hover:text-text hover:shadow-[0_8px_20px_-6px_rgba(124,95,247,0.5)]"
-                >
-                  <Icon className="h-4.5 w-4.5" />
-                </span>
-              ))}
+            <div
+              className="flex items-center gap-2"
+              onMouseEnter={() => setCtrlPaused(true)}
+              onMouseLeave={() => setCtrlPaused(false)}
+            >
+              {APPLIANCES.map(({ label, Icon }, i) => {
+                const on = i === activeCtrl;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    title={label}
+                    aria-pressed={on}
+                    aria-label={`${label} control`}
+                    onClick={() => setActiveCtrl(i)}
+                    className={`relative grid h-9 w-9 place-items-center rounded-xl transition-all duration-300 ${
+                      on
+                        ? "btn-grad scale-110 text-white shadow-[0_10px_24px_-8px_rgba(124,95,247,0.7)]"
+                        : "glass text-muted hover:-translate-y-0.5 hover:text-text"
+                    }`}
+                  >
+                    {on && (
+                      <span className="absolute -right-0.5 -top-0.5 flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky opacity-75" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-sky" />
+                      </span>
+                    )}
+                    <Icon className="h-4.5 w-4.5" />
+                  </button>
+                );
+              })}
             </div>
+            <motion.span
+              key={activeCtrl}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+              className="text-xs font-semibold text-glow"
+            >
+              {APPLIANCES[activeCtrl].label} · live
+            </motion.span>
           </motion.div>
 
           <motion.div
